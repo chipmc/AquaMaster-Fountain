@@ -1,0 +1,7 @@
+{
+    "C_Cpp.default.configurationProvider": "particle.particle-vscode-core",
+    "particle.targetDevice": "AquaMaster",
+    "particle.firmwareVersion": "2.0.1",
+    "particle.targetPlatform": "photon",
+    "cortex-debug.openocdPath": "${command:particle.getDebuggerOpenocdPath}"
+}

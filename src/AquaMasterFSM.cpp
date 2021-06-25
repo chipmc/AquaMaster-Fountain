@@ -21,6 +21,8 @@
 // v0.33 - Fixed the issue with setting new off time for weekend or weekdays
 // v0.34 - Allowed for 24 hour operations
 // v0.35 - Moved to a new model with PWM on the pump and the option to enable and disable the fountain
+// v0.40 - Fixed time managment
+// v0.41 - Fixed messaging - also made Sunday part of the weekend
 
 void setup();
 void loop();
@@ -45,11 +47,11 @@ int setWeekdayOffHour (String command);
 int setPWMvalue (String command);
 int setEnableFountain (String command);
 bool isDSTusa();
-#line 19 "/Users/chipmc/Documents/Maker/Particle/Projects/AquaMaster-Fountain/src/AquaMasterFSM.ino"
+#line 21 "/Users/chipmc/Documents/Maker/Particle/Projects/AquaMaster-Fountain/src/AquaMasterFSM.ino"
 STARTUP(System.enableFeature(FEATURE_RESET_INFO));                      // Track why we reset
 SYSTEM_THREAD(ENABLED);
 #define DSTRULES isDSTusa
-const char releaseNumber[8] = "0.35";                                   // Displays the release on the menu 
+const char releaseNumber[8] = "0.41";                                   // Displays the release on the menu 
 
 namespace EEPROMaddr {                                                  // Moved to namespace instead of #define to limit scope
   enum Addresses {
@@ -196,6 +198,7 @@ void loop()
     // Pump on can be 0 to 24 as well   
 
     if (sysStatus.verboseMode && state != oldState) publishStateTransition();
+
     if (Particle.connected()) {
       if (Time.hour() == 0) dailyCleanup();                             // Once a day, clean house
       takeMeasurements();                                               // Update Temp, Battery and Signal Strength values
@@ -216,42 +219,42 @@ void loop()
       waitUntil(meterParticlePublish);
       if (Particle.connected()) Particle.publish("Control","Fountain Not Enabled Turned Everything Off",PRIVATE);
     }
-    else {
-      if (current.pumpPower) {                                            // The pump is on - check if any changes needed
-        if (Time.hour() >= sysStatus.powerOffHour || Time.hour() < sysStatus.pumpOnHour) {       // Everything should be off - outside hours
-          current.pumpPower = current.ledPower = false;
-          digitalWrite(pumpPowerPin,LOW);
-          strncpy(pumpPowerStr, "Pump Off", sizeof(pumpPowerStr));
 
-          digitalWrite(ledPowerPin, LOW);
-          strncpy(ledPowerStr , "Led Off", sizeof(pumpPowerStr));
-          waitUntil(meterParticlePublish);
-          if (Particle.connected()) Particle.publish("Control","Turned everything off",PRIVATE);
-        }
-        else if (Time.hour() >= sysStatus.ledOnHour && !current.ledPower) {// The pump is on - do we need to turn on the leds
-          current.ledPower = true;
-          digitalWrite(ledPowerPin, HIGH);
-          strncpy(ledPowerStr , "Led On", sizeof(pumpPowerStr));
-          waitUntil(meterParticlePublish);
-          if (Particle.connected()) Particle.publish("Control", "Turned on the LEDs",PRIVATE);
-        }
+    // Take care of the pump
+
+    if (Time.hour() >= sysStatus.pumpOnHour && Time.hour() < sysStatus.powerOffHour) {                // Pump should be on - is it?
+      if (!current.pumpPower) {                                                                       // Not on - we need to fix this
+        current.pumpPower = true;
+        analogWrite(pumpPowerPin , sysStatus.pumpPWMvalue);
+        strncpy(pumpPowerStr , "Pump On", sizeof(pumpPowerStr));
+        waitUntil(meterParticlePublish);
+        if (Particle.connected()) Particle.publish("Control", "Turned on the Pump",PRIVATE);
       }
-      else {                                                              // The pump is off - do we need to turn it on?
-        if (Time.hour() >= sysStatus.pumpOnHour) {
-          current.pumpPower = true;
-          analogWrite(pumpPowerPin , sysStatus.pumpPWMvalue);
-          strncpy(pumpPowerStr , "Pump On", sizeof(pumpPowerStr));
-          waitUntil(meterParticlePublish);
-          if (Particle.connected()) Particle.publish("Control", "Turned on the Pump",PRIVATE);
-        }
+    }
+    else {                                                                                            // Pump should be off - is it?
+      if (current.pumpPower) {                                                                        // Is is on - we need to fix this
+        current.pumpPower = current.ledPower = false;
+        digitalWrite(pumpPowerPin,LOW);
+        strncpy(pumpPowerStr, "Pump Off", sizeof(pumpPowerStr));
+      }
+    }
 
-        if (Time.hour() >= sysStatus.ledOnHour) {                         // Need to turn on the Leds as well?
-          current.ledPower = true;
-          digitalWrite(ledPowerPin,HIGH);
-          strncpy(ledPowerStr,"Led On",sizeof(ledPowerStr));
-          waitUntil(meterParticlePublish);
-          if (Particle.connected()) Particle.publish("Control", "Turned on the Leds",PRIVATE);
-        }
+    // Now look at the LED
+    if (Time.hour() >= sysStatus.ledOnHour && Time.hour() < sysStatus.powerOffHour) {                 // Time for the LED to be on - is it?
+      if (!current.ledPower) {                                                                        // Not on - we need to fix this
+        current.ledPower = true;
+        digitalWrite(ledPowerPin,HIGH);
+        strncpy(ledPowerStr,"Led On",sizeof(ledPowerStr));                                            // LED needs to be turned on
+        waitUntil(meterParticlePublish);
+        if (Particle.connected()) Particle.publish("Control", "Turned on the Leds",PRIVATE);
+      }
+    }
+    else  {                                                                                           // Time for the LED to be off - is it?
+      if (current.ledPower) {                                                                         // It is on - we need to fix this
+        digitalWrite(ledPowerPin, LOW);
+        strncpy(ledPowerStr , "Led Off", sizeof(pumpPowerStr));                                       // LED needs to be turned off
+        waitUntil(meterParticlePublish);
+        if (Particle.connected()) Particle.publish("Control","Turned everything off",PRIVATE);
       }
     }
     currentHourlyPeriod = Time.hour();
@@ -286,7 +289,6 @@ void loop()
   }
   // Main loop housekeeping
   if (watchdogFlag) petWatchdog();                                      // Pet the watchdog if needed
-
 
   if (systemStatusWriteNeeded) {                                        // Batch write updates to FRAM
     EEPROM.put(EEPROMaddr::systemStatusAddr,sysStatus);
@@ -408,22 +410,17 @@ int setLightState (String command) // Function to force sending data in current 
 }
 
 void dailyCleanup() {                                                   // Called from Reporting State ONLY - clean house at the end of the day
-  static int currentDay = Time.day();
-
-  if (Time.day() != currentDay) {
-    waitUntil(meterParticlePublish);
-    if (Particle.connected()) Particle.publish("Daily Cleanup","Running", PRIVATE);               // Make sure this is being run
-    sysStatus.verboseMode = false;
-    sysStatus.resetCount = 0;
-    Particle.syncTime();                                                // Set the clock each day
-    waitFor(Particle.syncTimeDone,30000);                               // Wait for up to 30 seconds for the SyncTime to complete
-    systemStatusWriteNeeded = true;
-    currentDay = Time.day();
-    if (currentDay >= 6) {                                              // Weekend!
-      sysStatus.powerOffHour = sysStatus.weekendOffHour;                // Set for weekend off hour
-    }
-    else sysStatus.powerOffHour = sysStatus.weekdayOffHour;             // Set for weekday off hour
+  waitUntil(meterParticlePublish);
+  if (Particle.connected()) Particle.publish("Daily Cleanup","Running", PRIVATE);               // Make sure this is being run
+  sysStatus.verboseMode = false;
+  sysStatus.resetCount = 0;
+  Particle.syncTime();                                                // Set the clock each day
+  waitFor(Particle.syncTimeDone,30000);                               // Wait for up to 30 seconds for the SyncTime to complete
+  systemStatusWriteNeeded = true;
+  if (Time.day() == 1 || Time.day() >= 6) {                           // Weekend! (1 = Sunday, 6 /7 = Friday / Saturday)
+    sysStatus.powerOffHour = sysStatus.weekendOffHour;                // Set for weekend off hour
   }
+  else sysStatus.powerOffHour = sysStatus.weekdayOffHour;             // Set for weekday off hour
 }
 
 void loadSystemDefaults() {                                             // Default settings for the device - connected, not-low power and always on
@@ -571,6 +568,7 @@ int setPWMvalue (String command) {                                  // This is t
   if ((tempValue < 0) || (tempValue > 255)) return 0;                       // Make sure it falls in a valid range or send a "fail" result
   sysStatus.pumpPWMvalue = tempValue;
   systemStatusWriteNeeded = true;
+  if (current.pumpPower) analogWrite(pumpPowerPin , sysStatus.pumpPWMvalue);      // If the pump is on, we can refresh the value here
   snprintf(data, sizeof(data), "Pump PWM value set to %i",sysStatus.pumpPWMvalue);
   if (Particle.connected()) Particle.publish("Control",data, PRIVATE);
   state = CONTROL_STATE;

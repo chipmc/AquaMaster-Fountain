@@ -25,6 +25,8 @@
 // v0.41 - Fixed messaging - also made Sunday part of the weekend
 // v0.42 - Fixed more messaging and logic issues
 // v0.43 - Fixed minor errors
+// v0.44 - Fixed weekday error
+// v0.45 - Pump turned off too early - Timezone not set so added a variable.  Fixed issue with LED status
 
 void setup();
 void loop();
@@ -47,11 +49,11 @@ int setWeekdayOffHour (String command);
 int setPWMvalue (String command);
 int setEnableFountain (String command);
 bool isDSTusa();
-#line 23 "/Users/chipmc/Documents/Maker/Particle/Projects/AquaMaster-Fountain/src/AquaMasterFSM.ino"
+#line 25 "/Users/chipmc/Documents/Maker/Particle/Projects/AquaMaster-Fountain/src/AquaMasterFSM.ino"
 STARTUP(System.enableFeature(FEATURE_RESET_INFO));                      // Track why we reset
 SYSTEM_THREAD(ENABLED);
 #define DSTRULES isDSTusa
-const char releaseNumber[8] = "0.43";                                   // Displays the release on the menu 
+const char releaseNumber[8] = "0.45";                                   // Displays the release on the menu 
 
 namespace EEPROMaddr {                                                  // Moved to namespace instead of #define to limit scope
   enum Addresses {
@@ -144,6 +146,7 @@ void setup()                                                            // Note:
   Particle.variable("Weekday Off Hour",sysStatus.weekdayOffHour);
   Particle.variable("PWMvalue",sysStatus.pumpPWMvalue);
   Particle.variable("Fountain Enabled",sysStatus.fountainEnabled);
+  Particle.variable("TimeZone", currentOffsetStr);
 
   Particle.function("Verbose-Mode",setVerboseMode);
   Particle.function("Set-Timezone",setTimeZone);
@@ -255,6 +258,7 @@ void loop()
     }
     else  {                                                                                           // Time for the LED to be off - is it?
       if (current.ledPower) {                                                                         // It is on - we need to fix this
+        current.ledPower = false;
         digitalWrite(ledPowerPin, LOW);
         strncpy(ledPowerStr , "Led Off", sizeof(ledPowerStr));                                       // LED needs to be turned off
         waitUntil(meterParticlePublish);

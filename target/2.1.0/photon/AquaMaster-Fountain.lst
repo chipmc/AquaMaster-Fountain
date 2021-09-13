@@ -21,23 +21,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   8 .module_info_crc 00000004  080a5138  080a5138  00035138  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  9 .debug_info   00106fb9  00000000  00000000  0003513c  2**0
+  9 .debug_info   00106f4b  00000000  00000000  0003513c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 00013c66  00000000  00000000  0013c0f5  2**0
+ 10 .debug_abbrev 00013c66  00000000  00000000  0013c087  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0001b885  00000000  00000000  0014fd5b  2**0
+ 11 .debug_loc    0001b885  00000000  00000000  0014fced  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_aranges 000021d0  00000000  00000000  0016b5e0  2**0
+ 12 .debug_aranges 000021d0  00000000  00000000  0016b572  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 00005488  00000000  00000000  0016d7b0  2**0
+ 13 .debug_ranges 00005488  00000000  00000000  0016d742  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_macro  0002606f  00000000  00000000  00172c38  2**0
+ 14 .debug_macro  0002606f  00000000  00000000  00172bca  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_line   0002cb9b  00000000  00000000  00198ca7  2**0
+ 15 .debug_line   0002cb9d  00000000  00000000  00198c39  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_str    000b40a4  00000000  00000000  001c5842  2**0
+ 16 .debug_str    000b4047  00000000  00000000  001c57d6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_frame  00005cc4  00000000  00000000  002798e8  2**2
+ 17 .debug_frame  00005cc4  00000000  00000000  00279820  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -115,8 +115,8 @@ void module_user_init()
     for (ctor_num=0; ctor_num < link_constructors_size/sizeof(constructor_ptr_t); ctor_num++ )
  80a007c:	3501      	adds	r5, #1
  80a007e:	e7f7      	b.n	80a0070 <module_user_init+0x10>
- 80a0080:	080a4f9c 	.word	0x080a4f9c
- 80a0084:	080a4fbc 	.word	0x080a4fbc
+ 80a0080:	080a4fa0 	.word	0x080a4fa0
+ 80a0084:	080a4fc0 	.word	0x080a4fc0
 
 080a0088 <module_user_setup>:
 
@@ -783,7 +783,7 @@ bool isDSTusa() {
  80a046c:	080a48e0 	.word	0x080a48e0
  80a0470:	200001d0 	.word	0x200001d0
  80a0474:	080a48e7 	.word	0x080a48e7
- 80a0478:	080a4c22 	.word	0x080a4c22
+ 80a0478:	080a4c26 	.word	0x080a4c26
  80a047c:	080a48f2 	.word	0x080a48f2
  80a0480:	20000000 	.word	0x20000000
  80a0484:	080a48fa 	.word	0x080a48fa
@@ -800,7 +800,7 @@ bool isDSTusa() {
  80a04b0:	200001ec 	.word	0x200001ec
  80a04b4:	080a4946 	.word	0x080a4946
  80a04b8:	200001f0 	.word	0x200001f0
- 80a04bc:	080a49d0 	.word	0x080a49d0
+ 80a04bc:	080a49d4 	.word	0x080a49d4
  80a04c0:	200001f4 	.word	0x200001f4
  80a04c4:	080a4957 	.word	0x080a4957
  80a04c8:	200001b8 	.word	0x200001b8
@@ -816,17 +816,17 @@ bool isDSTusa() {
  80a04f0:	080a0c99 	.word	0x080a0c99
  80a04f4:	080a49a4 	.word	0x080a49a4
  80a04f8:	080a0d19 	.word	0x080a0d19
- 80a04fc:	080a49ae 	.word	0x080a49ae
+ 80a04fc:	080a49b2 	.word	0x080a49b2
  80a0500:	080a0df5 	.word	0x080a0df5
- 80a0504:	080a49bd 	.word	0x080a49bd
+ 80a0504:	080a49c1 	.word	0x080a49c1
  80a0508:	080a0e95 	.word	0x080a0e95
- 80a050c:	080a49cc 	.word	0x080a49cc
+ 80a050c:	080a49d0 	.word	0x080a49d0
  80a0510:	080a0f2d 	.word	0x080a0f2d
- 80a0514:	080a49d9 	.word	0x080a49d9
+ 80a0514:	080a49dd 	.word	0x080a49dd
  80a0518:	080a0f71 	.word	0x080a0f71
  80a051c:	200001cc 	.word	0x200001cc
  80a0520:	200001fc 	.word	0x200001fc
- 80a0524:	080a49e8 	.word	0x080a49e8
+ 80a0524:	080a49ec 	.word	0x080a49ec
  80a0528:	080a00b9 	.word	0x080a00b9
  80a052c:	200001c8 	.word	0x200001c8
 
@@ -938,14 +938,14 @@ bool isDSTusa() {
  80a05c2:	781b      	ldrb	r3, [r3, #0]
  80a05c4:	4a07      	ldr	r2, [pc, #28]	; (80a05e4 <_Z14setVerboseMode6String+0x88>)
  80a05c6:	e7df      	b.n	80a0588 <_Z14setVerboseMode6String+0x2c>
- 80a05c8:	080a49f2 	.word	0x080a49f2
+ 80a05c8:	080a49f6 	.word	0x080a49f6
  80a05cc:	200001cc 	.word	0x200001cc
  80a05d0:	20000198 	.word	0x20000198
- 80a05d4:	080a49f4 	.word	0x080a49f4
- 80a05d8:	080a4a17 	.word	0x080a4a17
+ 80a05d4:	080a49f8 	.word	0x080a49f8
+ 80a05d8:	080a4a1b 	.word	0x080a4a1b
  80a05dc:	200001fc 	.word	0x200001fc
- 80a05e0:	080a4a05 	.word	0x080a4a05
- 80a05e4:	080a4a07 	.word	0x080a4a07
+ 80a05e0:	080a4a09 	.word	0x080a4a09
+ 80a05e4:	080a4a0b 	.word	0x080a4a0b
 
 080a05e8 <_Z12dailyCleanupv>:
 void dailyCleanup() {                                                   // Called from Reporting State ONLY - clean house at the end of the day
@@ -1027,8 +1027,8 @@ void dailyCleanup() {                                                   // Calle
  80a0674:	e7f5      	b.n	80a0662 <_Z12dailyCleanupv+0x7a>
  80a0676:	bf00      	nop
  80a0678:	20000198 	.word	0x20000198
- 80a067c:	080a4a1c 	.word	0x080a4a1c
- 80a0680:	080a4a24 	.word	0x080a4a24
+ 80a067c:	080a4a20 	.word	0x080a4a20
+ 80a0680:	080a4a28 	.word	0x080a4a28
  80a0684:	200001cc 	.word	0x200001cc
  80a0688:	200001fc 	.word	0x200001fc
 
@@ -1081,10 +1081,10 @@ void dailyCleanup() {                                                   // Calle
  80a06e4:	200001c8 	.word	0x200001c8
  80a06e8:	20000024 	.word	0x20000024
  80a06ec:	200001c2 	.word	0x200001c2
- 80a06f0:	080a4a32 	.word	0x080a4a32
+ 80a06f0:	080a4a36 	.word	0x080a4a36
  80a06f4:	200001cc 	.word	0x200001cc
  80a06f8:	20000198 	.word	0x20000198
- 80a06fc:	080a4a40 	.word	0x080a4a40
+ 80a06fc:	080a4a44 	.word	0x080a4a44
 
 080a0700 <loop>:
 {
@@ -1427,25 +1427,25 @@ void dailyCleanup() {                                                   // Calle
  80a0990:	200001c4 	.word	0x200001c4
  80a0994:	20000020 	.word	0x20000020
  80a0998:	20000198 	.word	0x20000198
- 80a099c:	080a4af2 	.word	0x080a4af2
- 80a09a0:	080a4b06 	.word	0x080a4b06
+ 80a099c:	080a4af6 	.word	0x080a4af6
+ 80a09a0:	080a4b0a 	.word	0x080a4b0a
  80a09a4:	200001b4 	.word	0x200001b4
  80a09a8:	200001a0 	.word	0x200001a0
- 80a09ac:	080a4a51 	.word	0x080a4a51
+ 80a09ac:	080a4a55 	.word	0x080a4a55
  80a09b0:	20000010 	.word	0x20000010
- 80a09b4:	080a4a5a 	.word	0x080a4a5a
+ 80a09b4:	080a4a5e 	.word	0x080a4a5e
  80a09b8:	20000000 	.word	0x20000000
- 80a09bc:	080a4a62 	.word	0x080a4a62
- 80a09c0:	080a4a8d 	.word	0x080a4a8d
+ 80a09bc:	080a4a66 	.word	0x080a4a66
+ 80a09c0:	080a4a91 	.word	0x080a4a91
  80a09c4:	200001fd 	.word	0x200001fd
  80a09c8:	200001fc 	.word	0x200001fc
- 80a09cc:	080a4a95 	.word	0x080a4a95
- 80a09d0:	080a4a9d 	.word	0x080a4a9d
- 80a09d4:	080a4ade 	.word	0x080a4ade
- 80a09d8:	080a4ab0 	.word	0x080a4ab0
- 80a09dc:	080a4ac4 	.word	0x080a4ac4
- 80a09e0:	080a4acb 	.word	0x080a4acb
- 80a09e4:	080a4b0c 	.word	0x080a4b0c
+ 80a09cc:	080a4a99 	.word	0x080a4a99
+ 80a09d0:	080a4aa1 	.word	0x080a4aa1
+ 80a09d4:	080a4ae2 	.word	0x080a4ae2
+ 80a09d8:	080a4ab4 	.word	0x080a4ab4
+ 80a09dc:	080a4ac8 	.word	0x080a4ac8
+ 80a09e0:	080a4acf 	.word	0x080a4acf
+ 80a09e4:	080a4b10 	.word	0x080a4b10
  80a09e8:	f7ff fbe6 	bl	80a01b8 <_ZN11SystemClass18waitConditionWhileIZ11setTimeZone6StringEUlvE0_ZNS_13waitConditionIS2_EEbT_EUlvE_EEbS4_T0_.isra.0>
  80a09ec:	f000 fd16 	bl	80a141c <spark_cloud_flag_connected>
         if (Particle.connected()) Particle.publish("State","Error State - Too many resets", PRIVATE);            // Brodcase Reset Action
@@ -1474,8 +1474,8 @@ void dailyCleanup() {                                                   // Calle
  80a0a22:	f000 fb5b 	bl	80a10dc <HAL_EEPROM_Put>
  80a0a26:	e6a2      	b.n	80a076e <loop+0x6e>
  80a0a28:	20000198 	.word	0x20000198
- 80a0a2c:	080a4b3a 	.word	0x080a4b3a
- 80a0a30:	080a4b06 	.word	0x080a4b06
+ 80a0a2c:	080a4b3e 	.word	0x080a4b3e
+ 80a0a30:	080a4b0a 	.word	0x080a4b0a
  80a0a34:	200001cc 	.word	0x200001cc
 
 080a0a38 <_Z11setTimeZone6String>:
@@ -1613,11 +1613,11 @@ void dailyCleanup() {                                                   // Calle
  80a0b5c:	40ac2000 	.word	0x40ac2000
  80a0b60:	200001cc 	.word	0x200001cc
  80a0b64:	200001fc 	.word	0x200001fc
- 80a0b68:	080a49e8 	.word	0x080a49e8
+ 80a0b68:	080a49ec 	.word	0x080a49ec
  80a0b6c:	200001b8 	.word	0x200001b8
- 80a0b70:	080a4b58 	.word	0x080a4b58
+ 80a0b70:	080a4b5c 	.word	0x080a4b5c
  80a0b74:	20000198 	.word	0x20000198
- 80a0b78:	080a4b6c 	.word	0x080a4b6c
+ 80a0b78:	080a4b70 	.word	0x080a4b70
  80a0b7c:	200001c8 	.word	0x200001c8
 
 080a0b80 <_Z12setDSTOffset6String>:
@@ -1739,11 +1739,11 @@ int setDSTOffset(String command) {                                      // This 
  80a0c74:	40ac2000 	.word	0x40ac2000
  80a0c78:	200001cc 	.word	0x200001cc
  80a0c7c:	200001fc 	.word	0x200001fc
- 80a0c80:	080a4b71 	.word	0x080a4b71
- 80a0c84:	080a49e8 	.word	0x080a49e8
+ 80a0c80:	080a4b75 	.word	0x080a4b75
+ 80a0c84:	080a49ec 	.word	0x080a49ec
  80a0c88:	200001b8 	.word	0x200001b8
  80a0c8c:	20000198 	.word	0x20000198
- 80a0c90:	080a4b6c 	.word	0x080a4b6c
+ 80a0c90:	080a4b70 	.word	0x080a4b70
  80a0c94:	200001c8 	.word	0x200001c8
 
 080a0c98 <_Z13setPumpOnHour6String>:
@@ -1806,9 +1806,9 @@ int setPumpOnHour (String command) {                                    // This 
  80a0cfe:	e7fa      	b.n	80a0cf6 <_Z13setPumpOnHour6String+0x5e>
  80a0d00:	200001cc 	.word	0x200001cc
  80a0d04:	200001fc 	.word	0x200001fc
- 80a0d08:	080a4b82 	.word	0x080a4b82
+ 80a0d08:	080a4b86 	.word	0x080a4b86
  80a0d0c:	20000198 	.word	0x20000198
- 80a0d10:	080a4a8d 	.word	0x080a4a8d
+ 80a0d10:	080a4a91 	.word	0x080a4a91
  80a0d14:	200001c8 	.word	0x200001c8
 
 080a0d18 <_Z12setLedOnHour6String>:
@@ -1870,9 +1870,9 @@ int setLedOnHour (String command) {                                     // This 
  80a0d7a:	bf00      	nop
  80a0d7c:	200001cc 	.word	0x200001cc
  80a0d80:	200001fc 	.word	0x200001fc
- 80a0d84:	080a4b99 	.word	0x080a4b99
+ 80a0d84:	080a4b9d 	.word	0x080a4b9d
  80a0d88:	20000198 	.word	0x20000198
- 80a0d8c:	080a4a8d 	.word	0x080a4a8d
+ 80a0d8c:	080a4a91 	.word	0x080a4a91
  80a0d90:	200001c8 	.word	0x200001c8
 
 080a0d94 <_Z17setWeekendOffHour6String.part.0>:
@@ -1918,9 +1918,9 @@ int setWeekendOffHour (String command) {                                  // Thi
  80a0dd8:	f85d fb04 	ldr.w	pc, [sp], #4
  80a0ddc:	200001fc 	.word	0x200001fc
  80a0de0:	200001cc 	.word	0x200001cc
- 80a0de4:	080a4baf 	.word	0x080a4baf
+ 80a0de4:	080a4bb3 	.word	0x080a4bb3
  80a0de8:	20000198 	.word	0x20000198
- 80a0dec:	080a4a8d 	.word	0x080a4a8d
+ 80a0dec:	080a4a91 	.word	0x080a4a91
  80a0df0:	200001c8 	.word	0x200001c8
 
 080a0df4 <_Z17setWeekendOffHour6String>:
@@ -2004,9 +2004,9 @@ int setWeekdayOffHour (String command) {                                  // Thi
  80a0e78:	f85d fb04 	ldr.w	pc, [sp], #4
  80a0e7c:	200001fc 	.word	0x200001fc
  80a0e80:	200001cc 	.word	0x200001cc
- 80a0e84:	080a4bd0 	.word	0x080a4bd0
+ 80a0e84:	080a4bd4 	.word	0x080a4bd4
  80a0e88:	20000198 	.word	0x20000198
- 80a0e8c:	080a4a8d 	.word	0x080a4a8d
+ 80a0e8c:	080a4a91 	.word	0x080a4a91
  80a0e90:	200001c8 	.word	0x200001c8
 
 080a0e94 <_Z17setWeekdayOffHour6String>:
@@ -2084,9 +2084,9 @@ int setPWMvalue (String command) {                                  // This is t
  80a0f12:	f85d fb04 	ldr.w	pc, [sp], #4
  80a0f16:	bf00      	nop
  80a0f18:	200001cc 	.word	0x200001cc
- 80a0f1c:	080a4bf1 	.word	0x080a4bf1
+ 80a0f1c:	080a4bf5 	.word	0x080a4bf5
  80a0f20:	20000198 	.word	0x20000198
- 80a0f24:	080a4a8d 	.word	0x080a4a8d
+ 80a0f24:	080a4a91 	.word	0x080a4a91
  80a0f28:	200001c8 	.word	0x200001c8
 
 080a0f2c <_Z11setPWMvalue6String>:
@@ -2192,10 +2192,10 @@ int setEnableFountain (String command) {                                  // Thi
  80a0fd8:	200001cc 	.word	0x200001cc
  80a0fdc:	200001fc 	.word	0x200001fc
  80a0fe0:	080a4960 	.word	0x080a4960
- 80a0fe4:	080a4c0a 	.word	0x080a4c0a
- 80a0fe8:	080a4c16 	.word	0x080a4c16
+ 80a0fe4:	080a4c0e 	.word	0x080a4c0e
+ 80a0fe8:	080a4c1a 	.word	0x080a4c1a
  80a0fec:	20000198 	.word	0x20000198
- 80a0ff0:	080a4a8d 	.word	0x080a4a8d
+ 80a0ff0:	080a4a91 	.word	0x080a4a91
  80a0ff4:	200001c8 	.word	0x200001c8
 
 080a0ff8 <_GLOBAL__sub_I_sysStatus>:
@@ -3710,7 +3710,7 @@ bool CloudClass::register_function(cloud_function_t fn, void* data, const char* 
 	}
  80a17a4:	4620      	mov	r0, r4
  80a17a6:	bd38      	pop	{r3, r4, r5, pc}
- 80a17a8:	080a4c34 	.word	0x080a4c34
+ 80a17a8:	080a4c38 	.word	0x080a4c38
 
 080a17ac <_ZNSt8functionIFvRKN8particle5ErrorEEEC1ERKS5_>:
     function<_Res(_ArgTypes...)>::
@@ -4474,7 +4474,7 @@ TwoWire::TwoWire(hal_i2c_interface_t i2c, const hal_i2c_config_t& conf)
 }
  80a1c28:	4620      	mov	r0, r4
  80a1c2a:	bd10      	pop	{r4, pc}
- 80a1c2c:	080a4c50 	.word	0x080a4c50
+ 80a1c2c:	080a4c54 	.word	0x080a4c54
 
 080a1c30 <_Z26call_raw_interrupt_handlerPv>:
 }
@@ -4630,7 +4630,7 @@ IPAddress::IPAddress()
  80a1cde:	4620      	mov	r0, r4
  80a1ce0:	bd10      	pop	{r4, pc}
  80a1ce2:	bf00      	nop
- 80a1ce4:	080a4c78 	.word	0x080a4c78
+ 80a1ce4:	080a4c7c 	.word	0x080a4c7c
 
 080a1ce8 <_ZN9IPAddressC1ERK16_HAL_IPAddress_t>:
 IPAddress::IPAddress(const HAL_IPAddress& address)
@@ -4648,7 +4648,7 @@ IPAddress::IPAddress(const HAL_IPAddress& address)
  80a1d04:	701a      	strb	r2, [r3, #0]
 }
  80a1d06:	bd10      	pop	{r4, pc}
- 80a1d08:	080a4c78 	.word	0x080a4c78
+ 80a1d08:	080a4c7c 	.word	0x080a4c7c
 
 080a1d0c <_ZN9IPAddressC1Em>:
 IPAddress::IPAddress(uint32_t address)
@@ -4660,7 +4660,7 @@ IPAddress::IPAddress(uint32_t address)
  80a1d14:	7502      	strb	r2, [r0, #20]
 }
  80a1d16:	4770      	bx	lr
- 80a1d18:	080a4c78 	.word	0x080a4c78
+ 80a1d18:	080a4c7c 	.word	0x080a4c7c
 
 080a1d1c <_ZN9IPAddress8set_ipv4Ehhhh>:
 {
@@ -4689,7 +4689,7 @@ IPAddress::IPAddress(uint8_t first_octet, uint8_t second_octet, uint8_t third_oc
 }
  80a1d48:	b003      	add	sp, #12
  80a1d4a:	bd30      	pop	{r4, r5, pc}
- 80a1d4c:	080a4c78 	.word	0x080a4c78
+ 80a1d4c:	080a4c7c 	.word	0x080a4c7c
 
 080a1d50 <_GLOBAL__sub_I__ZN5spark3LogE>:
     // This handler doesn't support direct logging
@@ -4709,7 +4709,7 @@ void spark::logProcessControlRequest(ctrl_request* req) {
 }
  80a1d56:	4770      	bx	lr
  80a1d58:	20000200 	.word	0x20000200
- 80a1d5c:	080a4c84 	.word	0x080a4c84
+ 80a1d5c:	080a4c88 	.word	0x080a4c88
 
 080a1d60 <_ZN5spark12NetworkClass7connectEj>:
         return Network;
@@ -4902,7 +4902,7 @@ IPAddress NetworkClass::resolve(const char* name) {
 } // spark
  80a1e32:	4770      	bx	lr
  80a1e34:	20000204 	.word	0x20000204
- 80a1e38:	080a4c90 	.word	0x080a4c90
+ 80a1e38:	080a4c94 	.word	0x080a4c94
 
 080a1e3c <_ZN5Print5writeEPKhj>:
 
@@ -6017,7 +6017,7 @@ USARTSerial::USARTSerial(hal_usart_interface_t serial, hal_usart_ring_buffer_t *
 }
  80a23b4:	4620      	mov	r0, r4
  80a23b6:	bd10      	pop	{r4, pc}
- 80a23b8:	080a4ce8 	.word	0x080a4ce8
+ 80a23b8:	080a4cec 	.word	0x080a4cec
 
 080a23bc <_Z22__fetch_global_Serial1v>:
 static hal_usart_ring_buffer_t* serial1_rx_buffer = nullptr;
@@ -6186,7 +6186,7 @@ USBSerial::USBSerial(HAL_USB_USART_Serial serial, const HAL_USB_USART_Config& co
 }
  80a24a4:	4620      	mov	r0, r4
  80a24a6:	bd10      	pop	{r4, pc}
- 80a24a8:	080a4d18 	.word	0x080a4d18
+ 80a24a8:	080a4d1c 	.word	0x080a4d1c
 
 080a24ac <_Z19acquireSerialBufferv>:
 
@@ -6696,7 +6696,7 @@ bool WiFiSignal::fromConnectedInfo(const wlan_connected_info_t& inf) {
  80a27a6:	f8c4 8004 	str.w	r8, [r4, #4]
         return sig;
  80a27aa:	e7f8      	b.n	80a279e <_ZN5spark9WiFiClass4RSSIEv+0x52>
- 80a27ac:	080a4d84 	.word	0x080a4d84
+ 80a27ac:	080a4d88 	.word	0x080a4d88
 
 080a27b0 <_GLOBAL__sub_I__ZN10WiFiSignalC2ERK21wlan_connected_info_t>:
  80a27b0:	2204      	movs	r2, #4
@@ -6713,7 +6713,7 @@ the same way.
 }
  80a27ba:	4770      	bx	lr
  80a27bc:	200006c4 	.word	0x200006c4
- 80a27c0:	080a4d48 	.word	0x080a4d48
+ 80a27c0:	080a4d4c 	.word	0x080a4d4c
 
 080a27c4 <_ZZ21module_user_init_hookENUlP6_reentjmPvE_4_FUNES0_jmS1_>:
 
@@ -7235,7 +7235,7 @@ hal_i2c_config_t __attribute__((weak)) acquireWireBuffer()
 }
  80a2aa0:	4620      	mov	r0, r4
  80a2aa2:	bd70      	pop	{r4, r5, r6, pc}
- 80a2aa4:	080a4da0 	.word	0x080a4da0
+ 80a2aa4:	080a4da4 	.word	0x080a4da4
 
 080a2aa8 <_Z19__fetch_global_Wirev>:
 	return defaultWireConfig();
@@ -8813,9 +8813,9 @@ const IPAddress INADDR_NONE(0, 0, 0, 0);
  80a3c2e:	4620      	mov	r0, r4
  80a3c30:	b006      	add	sp, #24
  80a3c32:	bd10      	pop	{r4, pc}
- 80a3c34:	080a4dd6 	.word	0x080a4dd6
- 80a3c38:	080a4dc1 	.word	0x080a4dc1
- 80a3c3c:	080a4da1 	.word	0x080a4da1
+ 80a3c34:	080a4dda 	.word	0x080a4dda
+ 80a3c38:	080a4dc5 	.word	0x080a4dc5
+ 80a3c3c:	080a4da5 	.word	0x080a4da5
 
 080a3c40 <__cxa_atexit>:
  80a3c40:	b510      	push	{r4, lr}
@@ -9028,7 +9028,7 @@ const IPAddress INADDR_NONE(0, 0, 0, 0);
  80a3e3a:	2301      	movs	r3, #1
  80a3e3c:	e7f9      	b.n	80a3e32 <localtime_r+0x1d6>
  80a3e3e:	bf00      	nop
- 80a3e40:	080a4dfc 	.word	0x080a4dfc
+ 80a3e40:	080a4e00 	.word	0x080a4e00
  80a3e44:	2000073c 	.word	0x2000073c
 
 080a3e48 <memcpy>:
@@ -9269,7 +9269,7 @@ const IPAddress INADDR_NONE(0, 0, 0, 0);
  80a405a:	230a      	movs	r3, #10
  80a405c:	e7ad      	b.n	80a3fba <_strtol_l.isra.0+0x4a>
  80a405e:	bf00      	nop
- 80a4060:	080a4e99 	.word	0x080a4e99
+ 80a4060:	080a4e9d 	.word	0x080a4e9d
 
 080a4064 <strtol>:
  80a4064:	4613      	mov	r3, r2
@@ -9377,7 +9377,7 @@ const IPAddress INADDR_NONE(0, 0, 0, 0);
  80a4166:	230a      	movs	r3, #10
  80a4168:	e7ab      	b.n	80a40c2 <_strtoul_l.isra.0+0x4a>
  80a416a:	bf00      	nop
- 80a416c:	080a4e99 	.word	0x080a4e99
+ 80a416c:	080a4e9d 	.word	0x080a4e9d
 
 080a4170 <strtoul>:
  80a4170:	4613      	mov	r3, r2
@@ -9511,7 +9511,7 @@ const IPAddress INADDR_NONE(0, 0, 0, 0);
  80a42c8:	e7be      	b.n	80a4248 <__tzcalc_limits+0xc4>
  80a42ca:	bf00      	nop
  80a42cc:	00015180 	.word	0x00015180
- 80a42d0:	080a4dfc 	.word	0x080a4dfc
+ 80a42d0:	080a4e00 	.word	0x080a4e00
 
 080a42d4 <__tz_lock>:
  80a42d4:	4801      	ldr	r0, [pc, #4]	; (80a42dc <__tz_lock+0x8>)
@@ -9801,17 +9801,17 @@ const IPAddress INADDR_NONE(0, 0, 0, 0);
  80a45c2:	6178      	str	r0, [r7, #20]
  80a45c4:	e782      	b.n	80a44cc <_tzset_unlocked_r+0x1d4>
  80a45c6:	bf00      	nop
- 80a45c8:	080a4e5c 	.word	0x080a4e5c
+ 80a45c8:	080a4e60 	.word	0x080a4e60
  80a45cc:	20000738 	.word	0x20000738
  80a45d0:	20000740 	.word	0x20000740
- 80a45d4:	080a4e5f 	.word	0x080a4e5f
+ 80a45d4:	080a4e63 	.word	0x080a4e63
  80a45d8:	2000073c 	.word	0x2000073c
  80a45dc:	200000dc 	.word	0x200000dc
  80a45e0:	2000072b 	.word	0x2000072b
- 80a45e4:	080a4e63 	.word	0x080a4e63
- 80a45e8:	080a4e86 	.word	0x080a4e86
- 80a45ec:	080a4e72 	.word	0x080a4e72
- 80a45f0:	080a4e85 	.word	0x080a4e85
+ 80a45e4:	080a4e67 	.word	0x080a4e67
+ 80a45e8:	080a4e8a 	.word	0x080a4e8a
+ 80a45ec:	080a4e76 	.word	0x080a4e76
+ 80a45f0:	080a4e89 	.word	0x080a4e89
  80a45f4:	20000720 	.word	0x20000720
 
 080a45f8 <_findenv_r>:
@@ -10088,147 +10088,145 @@ const IPAddress INADDR_NONE(0, 0, 0, 0);
  80a4974:	6f62 6573 4d2d 646f 0065 6553 2d74 6954     bose-Mode.Set-Ti
  80a4984:	656d 6f7a 656e 5300 7465 442d 5453 664f     mezone.Set-DSTOf
  80a4994:	7366 7465 5300 7465 502d 6d75 4f70 006e     fset.Set-PumpOn.
- 80a49a4:	6553 2d74 654c 4f64 006e 6553 2d74 6557     Set-LedOn.Set-We
- 80a49b4:	6b65 6e65 4f64 6666 5300 7465 572d 6565     ekendOff.Set-Wee
- 80a49c4:	646b 7961 664f 0066 6553 2d74 5750 764d     kdayOff.Set-PWMv
- 80a49d4:	6c61 6575 4500 616e 6c62 4665 756f 746e     alue.EnableFount
- 80a49e4:	6961 006e 3225 312e 2066 5455 0043 0031     ain.%2.1f UTC.1.
- 80a49f4:	6553 2074 6556 6272 736f 2065 6f4d 6564     Set Verbose Mode
- 80a4a04:	3000 4300 656c 7261 6465 5620 7265 6f62     .0.Cleared Verbo
- 80a4a14:	6573 4d20 646f 0065 7552 6e6e 6e69 0067     se Mode.Running.
- 80a4a24:	6144 6c69 2079 6c43 6165 756e 0070 7246     Daily Cleanup.Fr
- 80a4a34:	6d6f 2520 2073 6f74 2520 0073 7453 7461     om %s to %s.Stat
- 80a4a44:	2065 7254 6e61 6973 6974 6e6f 5000 6d75     e Transition.Pum
- 80a4a54:	2070 664f 0066 654c 2064 664f 0066 6f46     p Off.Led Off.Fo
- 80a4a64:	6e75 6174 6e69 4e20 746f 4520 616e 6c62     untain Not Enabl
- 80a4a74:	6465 5420 7275 656e 2064 7645 7265 7479     ed Turned Everyt
- 80a4a84:	6968 676e 4f20 6666 4300 6e6f 7274 6c6f     hing Off.Control
- 80a4a94:	5000 6d75 2070 6e4f 5400 7275 656e 2064     .Pump On.Turned 
- 80a4aa4:	6e6f 7420 6568 5020 6d75 0070 7554 6e72     on the Pump.Turn
- 80a4ab4:	6465 6f20 6666 7420 6568 5020 6d75 0070     ed off the Pump.
- 80a4ac4:	654c 2064 6e4f 5400 7275 656e 2064 6e6f     Led On.Turned on
- 80a4ad4:	7420 6568 4c20 4445 0073 7554 6e72 6465      the LEDs.Turned
- 80a4ae4:	6f20 6666 7420 6568 4c20 4445 0073 7245      off the LEDs.Er
- 80a4af4:	6f72 2072 7453 7461 2065 202d 6552 6573     ror State - Rese
- 80a4b04:	0074 7453 7461 0065 6f54 6b6f 6c20 6e6f     t.State.Took lon
- 80a4b14:	2067 6973 636e 2065 616c 7473 7720 6265     g since last web
- 80a4b24:	6f68 6b6f 7220 7365 6f70 736e 2065 202d     hook response - 
- 80a4b34:	6552 6573 0074 7245 6f72 2072 7453 7461     Reset.Error Stat
- 80a4b44:	2065 202d 6f54 206f 616d 796e 7220 7365     e - Too many res
- 80a4b54:	7465 0073 6954 656d 7a20 6e6f 2065 666f     ets.Time zone of
- 80a4b64:	7366 7465 2520 0069 6954 656d 4400 5453     fset %i.Time.DST
- 80a4b74:	6f20 6666 6573 2074 3225 312e 0066 7550      offset %2.1f.Pu
- 80a4b84:	706d 4f20 206e 6f48 7275 7320 7465 7420     mp On Hour set t
- 80a4b94:	206f 6925 4c00 6465 4f20 206e 6f48 7275     o %i.Led On Hour
- 80a4ba4:	7320 7465 7420 206f 6925 5700 6565 656b      set to %i.Weeke
- 80a4bb4:	646e 5020 776f 7265 4f20 6666 4820 756f     nd Power Off Hou
- 80a4bc4:	2072 6573 2074 6f74 2520 0069 6557 6b65     r set to %i.Week
- 80a4bd4:	6164 2079 6f50 6577 2072 664f 2066 6f48     day Power Off Ho
- 80a4be4:	7275 7320 7465 7420 206f 6925 5000 6d75     ur set to %i.Pum
- 80a4bf4:	2070 5750 204d 6176 756c 2065 6573 2074     p PWM value set 
- 80a4c04:	6f74 2520 0069 6f4e 2074 6e45 6261 656c     to %i.Not Enable
- 80a4c14:	0064 6f46 6e75 6174 6e69 2520 0073          d.Fountain %s.
+ 80a49a4:	6553 2d74 654c 4f64 486e 756f 0072 6553     Set-LedOnHour.Se
+ 80a49b4:	2d74 6557 6b65 6e65 4f64 6666 5300 7465     t-WeekendOff.Set
+ 80a49c4:	572d 6565 646b 7961 664f 0066 6553 2d74     -WeekdayOff.Set-
+ 80a49d4:	5750 764d 6c61 6575 4500 616e 6c62 4665     PWMvalue.EnableF
+ 80a49e4:	756f 746e 6961 006e 3225 312e 2066 5455     ountain.%2.1f UT
+ 80a49f4:	0043 0031 6553 2074 6556 6272 736f 2065     C.1.Set Verbose 
+ 80a4a04:	6f4d 6564 3000 4300 656c 7261 6465 5620     Mode.0.Cleared V
+ 80a4a14:	7265 6f62 6573 4d20 646f 0065 7552 6e6e     erbose Mode.Runn
+ 80a4a24:	6e69 0067 6144 6c69 2079 6c43 6165 756e     ing.Daily Cleanu
+ 80a4a34:	0070 7246 6d6f 2520 2073 6f74 2520 0073     p.From %s to %s.
+ 80a4a44:	7453 7461 2065 7254 6e61 6973 6974 6e6f     State Transition
+ 80a4a54:	5000 6d75 2070 664f 0066 654c 2064 664f     .Pump Off.Led Of
+ 80a4a64:	0066 6f46 6e75 6174 6e69 4e20 746f 4520     f.Fountain Not E
+ 80a4a74:	616e 6c62 6465 5420 7275 656e 2064 7645     nabled Turned Ev
+ 80a4a84:	7265 7479 6968 676e 4f20 6666 4300 6e6f     erything Off.Con
+ 80a4a94:	7274 6c6f 5000 6d75 2070 6e4f 5400 7275     trol.Pump On.Tur
+ 80a4aa4:	656e 2064 6e6f 7420 6568 5020 6d75 0070     ned on the Pump.
+ 80a4ab4:	7554 6e72 6465 6f20 6666 7420 6568 5020     Turned off the P
+ 80a4ac4:	6d75 0070 654c 2064 6e4f 5400 7275 656e     ump.Led On.Turne
+ 80a4ad4:	2064 6e6f 7420 6568 4c20 4445 0073 7554     d on the LEDs.Tu
+ 80a4ae4:	6e72 6465 6f20 6666 7420 6568 4c20 4445     rned off the LED
+ 80a4af4:	0073 7245 6f72 2072 7453 7461 2065 202d     s.Error State - 
+ 80a4b04:	6552 6573 0074 7453 7461 0065 6f54 6b6f     Reset.State.Took
+ 80a4b14:	6c20 6e6f 2067 6973 636e 2065 616c 7473      long since last
+ 80a4b24:	7720 6265 6f68 6b6f 7220 7365 6f70 736e      webhook respons
+ 80a4b34:	2065 202d 6552 6573 0074 7245 6f72 2072     e - Reset.Error 
+ 80a4b44:	7453 7461 2065 202d 6f54 206f 616d 796e     State - Too many
+ 80a4b54:	7220 7365 7465 0073 6954 656d 7a20 6e6f      resets.Time zon
+ 80a4b64:	2065 666f 7366 7465 2520 0069 6954 656d     e offset %i.Time
+ 80a4b74:	4400 5453 6f20 6666 6573 2074 3225 312e     .DST offset %2.1
+ 80a4b84:	0066 7550 706d 4f20 206e 6f48 7275 7320     f.Pump On Hour s
+ 80a4b94:	7465 7420 206f 6925 4c00 6465 4f20 206e     et to %i.Led On 
+ 80a4ba4:	6f48 7275 7320 7465 7420 206f 6925 5700     Hour set to %i.W
+ 80a4bb4:	6565 656b 646e 5020 776f 7265 4f20 6666     eekend Power Off
+ 80a4bc4:	4820 756f 2072 6573 2074 6f74 2520 0069      Hour set to %i.
+ 80a4bd4:	6557 6b65 6164 2079 6f50 6577 2072 664f     Weekday Power Of
+ 80a4be4:	2066 6f48 7275 7320 7465 7420 206f 6925     f Hour set to %i
+ 80a4bf4:	5000 6d75 2070 5750 204d 6176 756c 2065     .Pump PWM value 
+ 80a4c04:	6573 2074 6f74 2520 0069 6f4e 2074 6e45     set to %i.Not En
+ 80a4c14:	6261 656c 0064 6f46 6e75 6174 6e69 2520     abled.Fountain %
+ 80a4c24:	0073                                        s.
 
-080a4c22 <_ZL13releaseNumber>:
- 80a4c22:	2e30 3534 0000 0000 0000                    0.45......
+080a4c26 <_ZL13releaseNumber>:
+ 80a4c26:	2e30 3634 0000 0000 0000                    0.46......
 
-080a4c2c <_ZTVSt15_Sp_counted_ptrIPN8particle6detail10FutureImplIbNS1_13FutureContextEEELN9__gnu_cxx12_Lock_policyE0EE>:
+080a4c30 <_ZTVSt15_Sp_counted_ptrIPN8particle6detail10FutureImplIbNS1_13FutureContextEEELN9__gnu_cxx12_Lock_policyE0EE>:
 	...
- 80a4c34:	15eb 080a 15f1 080a 1641 080a 15ff 080a     ........A.......
- 80a4c44:	15ed 080a                                   ....
+ 80a4c38:	15eb 080a 15f1 080a 1641 080a 15ff 080a     ........A.......
+ 80a4c48:	15ed 080a                                   ....
 
-080a4c48 <_ZTV7TwoWire>:
+080a4c4c <_ZTV7TwoWire>:
 	...
- 80a4c50:	1bb5 080a 1bff 080a 1bd7 080a 1bb7 080a     ................
- 80a4c60:	1bdf 080a 1be7 080a 1bef 080a 1bf7 080a     ................
+ 80a4c54:	1bb5 080a 1bff 080a 1bd7 080a 1bb7 080a     ................
+ 80a4c64:	1bdf 080a 1be7 080a 1bef 080a 1bf7 080a     ................
 
-080a4c70 <_ZTV9IPAddress>:
+080a4c74 <_ZTV9IPAddress>:
 	...
- 80a4c78:	1c99 080a 1c89 080a 1c8b 080a 7061 0070     ............app.
+ 80a4c7c:	1c99 080a 1c89 080a 1c8b 080a 7061 0070     ............app.
 
-080a4c88 <_ZTVN5spark12NetworkClassE>:
+080a4c8c <_ZTVN5spark12NetworkClassE>:
 	...
- 80a4c90:	1d61 080a 1d6b 080a 1d75 080a 1d7f 080a     a...k...u.......
- 80a4ca0:	1d89 080a 1d95 080a 1da1 080a 1da9 080a     ................
- 80a4cb0:	1db1 080a 1dbd 080a 1dc5 080a 1dcf 080a     ................
- 80a4cc0:	1dd9 080a 5925 252d 2d6d 6425 2554 3a48     ....%Y-%m-%dT%H:
- 80a4cd0:	4d25 253a 2553 007a 7361 7463 6d69 0065     %M:%S%z.asctime.
+ 80a4c94:	1d61 080a 1d6b 080a 1d75 080a 1d7f 080a     a...k...u.......
+ 80a4ca4:	1d89 080a 1d95 080a 1da1 080a 1da9 080a     ................
+ 80a4cb4:	1db1 080a 1dbd 080a 1dc5 080a 1dcf 080a     ................
+ 80a4cc4:	1dd9 080a 5925 252d 2d6d 6425 2554 3a48     ....%Y-%m-%dT%H:
+ 80a4cd4:	4d25 253a 2553 007a 7361 7463 6d69 0065     %M:%S%z.asctime.
 
-080a4ce0 <_ZTV11USARTSerial>:
+080a4ce4 <_ZTV11USARTSerial>:
 	...
- 80a4ce8:	2319 080a 2381 080a 235d 080a 1e3d 080a     .#...#..]#..=...
- 80a4cf8:	232d 080a 2349 080a 233b 080a 2357 080a     -#..I#..;#..W#..
- 80a4d08:	231b 080a 231f 080a                         .#...#..
+ 80a4cec:	2319 080a 2381 080a 235d 080a 1e3d 080a     .#...#..]#..=...
+ 80a4cfc:	232d 080a 2349 080a 233b 080a 2357 080a     -#..I#..;#..W#..
+ 80a4d0c:	231b 080a 231f 080a                         .#...#..
 
-080a4d10 <_ZTV9USBSerial>:
+080a4d14 <_ZTV9USBSerial>:
 	...
- 80a4d18:	2411 080a 2477 080a 244f 080a 1e3d 080a     .$..w$..O$..=...
- 80a4d28:	2441 080a 2413 080a 2423 080a 2471 080a     A$...$..#$..q$..
- 80a4d38:	2433 080a 240d 080a                         3$...$..
+ 80a4d1c:	2411 080a 2477 080a 244f 080a 1e3d 080a     .$..w$..O$..=...
+ 80a4d2c:	2441 080a 2413 080a 2423 080a 2471 080a     A$...$..#$..q$..
+ 80a4d3c:	2433 080a 240d 080a                         3$...$..
 
-080a4d40 <_ZTVN5spark9WiFiClassE>:
+080a4d44 <_ZTVN5spark9WiFiClassE>:
 	...
- 80a4d48:	265b 080a 2651 080a 2647 080a 25ab 080a     [&..Q&..G&...%..
- 80a4d58:	263b 080a 262f 080a 1da1 080a 1da9 080a     ;&../&..........
- 80a4d68:	2623 080a 261b 080a 2611 080a 2607 080a     #&...&...&...&..
- 80a4d78:	25c3 080a                                   .%..
+ 80a4d4c:	265b 080a 2651 080a 2647 080a 25ab 080a     [&..Q&..G&...%..
+ 80a4d5c:	263b 080a 262f 080a 1da1 080a 1da9 080a     ;&../&..........
+ 80a4d6c:	2623 080a 261b 080a 2611 080a 2607 080a     #&...&...&...&..
+ 80a4d7c:	25c3 080a                                   .%..
 
-080a4d7c <_ZTV10WiFiSignal>:
+080a4d80 <_ZTV10WiFiSignal>:
 	...
- 80a4d84:	25a5 080a 25b5 080a 25a7 080a 2665 080a     .%...%...%..e&..
- 80a4d94:	2695 080a 26b9 080a 26e9 080a               .&...&...&..
+ 80a4d88:	25a5 080a 25b5 080a 25a7 080a 2665 080a     .%...%...%..e&..
+ 80a4d98:	2695 080a 26b9 080a 26e9 080a               .&...&...&..
 
-080a4da0 <_ZSt7nothrow>:
- 80a4da0:	2500 332e 2073 2e25 7333 3325 2064 2e25     .%.3s %.3s%3d %.
- 80a4db0:	6432 253a 322e 3a64 2e25 6432 2520 0a64     2d:%.2d:%.2d %d.
-	...
-
-080a4dc1 <day_name.4782>:
- 80a4dc1:	7553 4d6e 6e6f 7554 5765 6465 6854 4675     SunMonTueWedThuF
- 80a4dd1:	6972 6153                                    riSat
-
-080a4dd6 <mon_name.4783>:
- 80a4dd6:	614a 466e 6265 614d 4172 7270 614d 4a79     JanFebMarAprMayJ
- 80a4de6:	6e75 754a 416c 6775 6553 4f70 7463 6f4e     unJulAugSepOctNo
- 80a4df6:	4476 6365 0000                              vDec..
-
-080a4dfc <__month_lengths>:
- 80a4dfc:	001f 0000 001c 0000 001f 0000 001e 0000     ................
- 80a4e0c:	001f 0000 001e 0000 001f 0000 001f 0000     ................
- 80a4e1c:	001e 0000 001f 0000 001e 0000 001f 0000     ................
- 80a4e2c:	001f 0000 001d 0000 001f 0000 001e 0000     ................
- 80a4e3c:	001f 0000 001e 0000 001f 0000 001f 0000     ................
- 80a4e4c:	001e 0000 001f 0000 001e 0000 001f 0000     ................
- 80a4e5c:	5a54 4700 544d 2500 3031 5e5b 2d30 2c39     TZ.GMT.%10[^0-9,
- 80a4e6c:	2d2b 255d 006e 254d 7568 6e25 252e 7568     +-]%n.M%hu%n.%hu
- 80a4e7c:	6e25 252e 7568 6e25 2f00 6825 2575 3a6e     %n.%hu%n./%hu%n:
- 80a4e8c:	6825 2575 3a6e 6825 2575 006e               %hu%n:%hu%n.
-
-080a4e98 <_ctype_>:
- 80a4e98:	2000 2020 2020 2020 2020 2828 2828 2028     .         ((((( 
- 80a4ea8:	2020 2020 2020 2020 2020 2020 2020 2020                     
- 80a4eb8:	8820 1010 1010 1010 1010 1010 1010 1010      ...............
- 80a4ec8:	0410 0404 0404 0404 0404 1004 1010 1010     ................
- 80a4ed8:	1010 4141 4141 4141 0101 0101 0101 0101     ..AAAAAA........
- 80a4ee8:	0101 0101 0101 0101 0101 0101 1010 1010     ................
- 80a4ef8:	1010 4242 4242 4242 0202 0202 0202 0202     ..BBBBBB........
- 80a4f08:	0202 0202 0202 0202 0202 0202 1010 1010     ................
- 80a4f18:	0020 0000 0000 0000 0000 0000 0000 0000      ...............
+080a4da4 <_ZSt7nothrow>:
+ 80a4da4:	2500 332e 2073 2e25 7333 3325 2064 2e25     .%.3s %.3s%3d %.
+ 80a4db4:	6432 253a 322e 3a64 2e25 6432 2520 0a64     2d:%.2d:%.2d %d.
 	...
 
-080a4f99 <link_const_variable_data_end>:
- 80a4f99:	00          	.byte	0x00
+080a4dc5 <day_name.4782>:
+ 80a4dc5:	7553 4d6e 6e6f 7554 5765 6465 6854 4675     SunMonTueWedThuF
+ 80a4dd5:	6972 6153                                    riSat
+
+080a4dda <mon_name.4783>:
+ 80a4dda:	614a 466e 6265 614d 4172 7270 614d 4a79     JanFebMarAprMayJ
+ 80a4dea:	6e75 754a 416c 6775 6553 4f70 7463 6f4e     unJulAugSepOctNo
+ 80a4dfa:	4476 6365 0000                              vDec..
+
+080a4e00 <__month_lengths>:
+ 80a4e00:	001f 0000 001c 0000 001f 0000 001e 0000     ................
+ 80a4e10:	001f 0000 001e 0000 001f 0000 001f 0000     ................
+ 80a4e20:	001e 0000 001f 0000 001e 0000 001f 0000     ................
+ 80a4e30:	001f 0000 001d 0000 001f 0000 001e 0000     ................
+ 80a4e40:	001f 0000 001e 0000 001f 0000 001f 0000     ................
+ 80a4e50:	001e 0000 001f 0000 001e 0000 001f 0000     ................
+ 80a4e60:	5a54 4700 544d 2500 3031 5e5b 2d30 2c39     TZ.GMT.%10[^0-9,
+ 80a4e70:	2d2b 255d 006e 254d 7568 6e25 252e 7568     +-]%n.M%hu%n.%hu
+ 80a4e80:	6e25 252e 7568 6e25 2f00 6825 2575 3a6e     %n.%hu%n./%hu%n:
+ 80a4e90:	6825 2575 3a6e 6825 2575 006e               %hu%n:%hu%n.
+
+080a4e9c <_ctype_>:
+ 80a4e9c:	2000 2020 2020 2020 2020 2828 2828 2028     .         ((((( 
+ 80a4eac:	2020 2020 2020 2020 2020 2020 2020 2020                     
+ 80a4ebc:	8820 1010 1010 1010 1010 1010 1010 1010      ...............
+ 80a4ecc:	0410 0404 0404 0404 0404 1004 1010 1010     ................
+ 80a4edc:	1010 4141 4141 4141 0101 0101 0101 0101     ..AAAAAA........
+ 80a4eec:	0101 0101 0101 0101 0101 0101 1010 1010     ................
+ 80a4efc:	1010 4242 4242 4242 0202 0202 0202 0202     ..BBBBBB........
+ 80a4f0c:	0202 0202 0202 0202 0202 0202 1010 1010     ................
+ 80a4f1c:	0020 0000 0000 0000 0000 0000 0000 0000      ...............
 	...
 
-080a4f9c <link_constructors_location>:
- 80a4f9c:	080a0ff9 	.word	0x080a0ff9
- 80a4fa0:	080a1d51 	.word	0x080a1d51
- 80a4fa4:	080a1e29 	.word	0x080a1e29
- 80a4fa8:	080a1ed5 	.word	0x080a1ed5
- 80a4fac:	080a2049 	.word	0x080a2049
- 80a4fb0:	080a2305 	.word	0x080a2305
- 80a4fb4:	080a27b1 	.word	0x080a27b1
- 80a4fb8:	080a2af9 	.word	0x080a2af9
+080a4f9d <link_const_variable_data_end>:
+ 80a4f9d:	00          	.byte	0x00
+	...
 
-080a4fbc <link_constructors_end>:
- 80a4fbc:	00000000 	.word	0x00000000
+080a4fa0 <link_constructors_location>:
+ 80a4fa0:	080a0ff9 	.word	0x080a0ff9
+ 80a4fa4:	080a1d51 	.word	0x080a1d51
+ 80a4fa8:	080a1e29 	.word	0x080a1e29
+ 80a4fac:	080a1ed5 	.word	0x080a1ed5
+ 80a4fb0:	080a2049 	.word	0x080a2049
+ 80a4fb4:	080a2305 	.word	0x080a2305
+ 80a4fb8:	080a27b1 	.word	0x080a27b1
+ 80a4fbc:	080a2af9 	.word	0x080a2af9

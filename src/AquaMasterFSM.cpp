@@ -27,6 +27,7 @@
 // v0.43 - Fixed minor errors
 // v0.44 - Fixed weekday error
 // v0.45 - Pump turned off too early - Timezone not set so added a variable.  Fixed issue with LED status
+// v0.46 - Minor tweak to Led On function name Led On Hour
 
 void setup();
 void loop();
@@ -49,11 +50,11 @@ int setWeekdayOffHour (String command);
 int setPWMvalue (String command);
 int setEnableFountain (String command);
 bool isDSTusa();
-#line 25 "/Users/chipmc/Documents/Maker/Particle/Projects/AquaMaster-Fountain/src/AquaMasterFSM.ino"
+#line 26 "/Users/chipmc/Documents/Maker/Particle/Projects/AquaMaster-Fountain/src/AquaMasterFSM.ino"
 STARTUP(System.enableFeature(FEATURE_RESET_INFO));                      // Track why we reset
 SYSTEM_THREAD(ENABLED);
 #define DSTRULES isDSTusa
-const char releaseNumber[8] = "0.45";                                   // Displays the release on the menu 
+const char releaseNumber[8] = "0.46";                                   // Displays the release on the menu 
 
 namespace EEPROMaddr {                                                  // Moved to namespace instead of #define to limit scope
   enum Addresses {
@@ -152,7 +153,7 @@ void setup()                                                            // Note:
   Particle.function("Set-Timezone",setTimeZone);
   Particle.function("Set-DSTOffset",setDSTOffset);
   Particle.function("Set-PumpOn", setPumpOnHour);
-  Particle.function("Set-LedOn", setLedOnHour);
+  Particle.function("Set-LedOnHour", setLedOnHour);
   Particle.function("Set-WeekendOff",setWeekendOffHour);
   Particle.function("Set-WeekdayOff",setWeekdayOffHour);
   Particle.function("Set-PWMvalue",setPWMvalue);
